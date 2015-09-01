@@ -13,3 +13,8 @@ body {
   position: relative;
   background-position: center;
 }
+
+.navbar a {
+  margin: 2px;
+  margin-bottom: -6px;
+}

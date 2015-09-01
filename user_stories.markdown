@@ -75,6 +75,20 @@ When I visit "/sources/IDENTIFIER/events/EVENTNAME"
 and the event is defined
 then I should see an hour by hour breakdown ex: x shown at 1, etc..
 
+When I visit "/sources/IDENTIFIER/events"
+then I should see the most successful events through the most unsuccessful events
+
+When I visit "sources"/IDENTIFIER/events"
+and no events are defined
+then I should see a message "No events have been defined"
+
+When I visit "/sources/IDENTIFIER/events"
+then I should see links for each event
+
+When I visit "/sources?IDENTIFIER/events"
+and I click a event link
+then I should be redirected to "/sources/IDENTIFIER/events/EVENTNAME"
+
 When I visit "/sources/IDENTIFIER/events/EVENTNAME"
 and the event is defined
 then I should see "received x times"

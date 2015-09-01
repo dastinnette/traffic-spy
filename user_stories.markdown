@@ -48,3 +48,25 @@ Then the page should display "hyperlink to view aggregate event data"
 When I visit "/sources/IDENTIFIER"
 And the identifier does not exist
 Then the page should display "identifier does not exist"
+
+When i visit "/sources/IDENTIFIER/urls/RELATIVE/PATH"
+then i should see "Longest Response time:"integer""
+
+When i visit "/sources/IDENTIFIER/urls/RELATIVE/PATH"
+then i should see "Shortest Response time:"integer""
+
+When i visit "/sources/IDENTIFIER/urls/RELATIVE/PATH"
+then i should see "Average Response time:"integer""
+
+When i visit "/sources/IDENTIFIER/urls/RELATIVE/PATH"
+then i should see "HTTP Verbs:"verbs""
+
+When i visit "/sources/IDENTIFIER/urls/RELATIVE/PATH"
+then i should see "Top referrers:"String""
+
+When i visit "/sources/IDENTIFIER/urls/RELATIVE/PATH"
+then i should see "Top User Agents:"String""
+
+When i visit "/sources/IDENTIFIER/urls/RELATIVE/PATH"
+and the path doesnt exist
+then i should see "The URL has not been requested"

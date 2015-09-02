@@ -12,7 +12,10 @@ module TrafficSpy
 
     post "/sources" do
       @client = Client.new(params)
-      if @client.save
+      if Client.find_by(identifier: params[:identifier])
+        status 403
+        body @client.errors.full_messages.first
+      elsif @client.save
         body json_converter
       else
         body @client.errors.full_messages.first

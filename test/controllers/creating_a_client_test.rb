@@ -20,11 +20,22 @@ class CreatingAClientTest<Minitest::Test
     attributes = {identifier: "jumpstart lab",
                   root_url: "test stuff"}
     post "/sources", attributes
-    # require 'pry'; binding.pry
 
     assert_equal 1, Client.count
     assert_equal 200, last_response.status
     assert_equal "{\"identifier\":\"jumpstart lab\"}", last_response.body
+  end
+
+  def test_it_does_not_create_a_client_when_identifier_already_taken
+    attributes = {identifier: "jumpstart lab",
+                  root_url: "test stuff"}
+    attributes2 = {identifier: "jumpstart lab",
+                  root_url: "test stuff"}
+    post "/sources", attributes
+    post "/sources", attributes2
+
+    assert_equal 1, Client.count
+    assert_equal 403, last_response.status
   end
 
   def test_it_does_not_create_a_client_with_invalid_attributes

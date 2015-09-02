@@ -4,6 +4,11 @@ Bundler.require
 
 require "sinatra/activerecord/rake"
 
+  desc "Runs all tests"
+  task :test do
+    sh "mrspec"
+  end
+
 namespace :sanitation do
   desc "Check line lengths & whitespace with Cane"
   task :lines do
@@ -27,6 +32,6 @@ namespace :sanitation do
   task :all => [:lines, :methods]
 
   Rake::TestTask.new do |t|
-    t.test_files = FileList['test/**/*_test.rb']
+    t.test_files = FileList["test/**/*_test.rb"]
   end
 end

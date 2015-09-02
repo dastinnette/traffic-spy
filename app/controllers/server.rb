@@ -25,9 +25,13 @@ module TrafficSpy
     end
 
     def json_converter
+      client_identifier_hash.to_json
+    end
+
+    def client_identifier_hash
       @client.attributes.select do |k|
         k == "identifier"
-      end.to_json
+      end
     end
   end
 

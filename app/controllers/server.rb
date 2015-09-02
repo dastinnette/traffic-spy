@@ -1,6 +1,7 @@
 module TrafficSpy
 
   class Server < Sinatra::Base
+
     get '/' do
       erb :index
     end
@@ -10,17 +11,23 @@ module TrafficSpy
     end
 
     post "/sources" do
-      client = Client.new(indentifier: params[:indentifier], root_url: params[:rootUrl])
-      if client.save
-        body "success"
+      @client = Client.new(params)
+      if @client.save
+        body json_converter
       else
-        body client.errors.full_messages.first
+        body @client.errors.full_messages.first
         status 400
       end
     end
 
     not_found do
       erb :error
+    end
+
+    def json_converter
+      @client.attributes.select do |k|
+        k == "identifier"
+      end.to_json
     end
   end
 

@@ -8,24 +8,31 @@ class CreatingAClientTest<Minitest::Test
     TrafficSpy::Server
   end
 
-  def test_it_creates_a_client_with_valid_attributes
-    skip
-    attributes = {client: {identifier: "jumpstart lab",
-                           rootUrl: "test stuff"}}
-    post "/sources", attributes
+  def setup
+    DatabaseCleaner.start
+  end
 
-    assert_equal 1, Client.count
-    assert_equal 302, last_response.status
-    assert_equal "{'identifier':'jumpstartlab'}", last_response
+  def teardown
+    DatabaseCleaner.clean
   end
 
   def test_it_creates_a_client_with_valid_attributes
-    attributes = {client: {identifier: "jumpstart lab"}}
+    attributes = {identifier: "jumpstart lab",
+                  root_url: "test stuff"}
+    post "/sources", attributes
+    # require 'pry'; binding.pry
+
+    assert_equal 1, Client.count
+    assert_equal 200, last_response.status
+    assert_equal "{\"identifier\":\"jumpstart lab\"}", last_response.body
+  end
+
+  def test_it_does_not_create_a_client_with_invalid_attributes
+    attributes = {identifier: "jumpstart lab"}
     post "/sources", attributes
 
     assert_equal 0, Client.count
     assert_equal 400, last_response.status
-    assert_equal "{'identifier':'jumpstartlab'}", last_response.body
   end
 
 end

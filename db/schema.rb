@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20150902161659) do
   enable_extension "plpgsql"
 
   create_table "clients", force: :cascade do |t|
-    t.text     "indentifier"
+    t.text     "identifier"
     t.text     "root_url"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

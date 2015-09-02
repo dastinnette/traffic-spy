@@ -1,5 +1,7 @@
 class Client < ActiveRecord::Base
-  validates :indentifier, :root_url, presence: true
+  validates :identifier, presence: true
+  validates :root_url, presence: true
+
 
 
 end

@@ -1,5 +1,7 @@
 body {
-  background-color: orange;
+  background-color: black;
+  padding-top: 53px;
+
 }
 
 .jumbotron {
@@ -14,7 +16,8 @@ body {
   background-position: center;
 }
 
-.navbar a {
+.navbar {
   margin: 2px;
   margin-bottom: -6px;
+  text-align: center;
 }

@@ -1,15 +1,24 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <nav class="menu">
-      <a href="#"<i style="color: #EB5454;"></i><h6>Home</h6></a>
-      <a href="#here"<i style="color: #FFF4AD;"></i> <h6>Social</h6></a>
-      <a href="#there"<i style="color: #EBBB54;"></i><h6>Portfolio</h6> </a>
-      <a href="#overthere"<i style="color: white;"></i><h6>Content</h6> </a>
-      <a href="#yonder"<i style="color: #DDDD77;"></i><h6>Portrait</h6></a>
-    </nav>
-  </div>
+     <div class="container">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="#">Traffic Spy</a>
+       </div>
+       <div id="navbar" class="collapse navbar-collapse">
+         <ul class="nav navbar-nav">
+           <li><a href="#">Home</a></li>
+           <li><a href="dashboard.erb">Dashboard</a></li>
+           <li><a href="#contact">Analytics</a></li>
+         </ul>
+       </div>
+     </div>
 </nav>
 
 <%= yield %>

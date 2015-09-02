@@ -1,3 +1,5 @@
+
+
 module TrafficSpy
 
   class Server < Sinatra::Base
@@ -10,8 +12,14 @@ module TrafficSpy
     end
 
     post "/sources" do
-      TrafficSpy.create(params[:identifier], params[:rootUrl])
-      redirect "/sources"
+      client = Client.new(indentifier: params[:indentifier], root_url: params[:rootUrl])
+      if client.save
+        body "success"
+      else
+        body client.errors.full_messages.first
+        status 400
+      end
+      body "success" if redirect "/sources"
     end
 
     not_found do

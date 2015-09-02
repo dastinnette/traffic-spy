@@ -1,5 +1,3 @@
-
-
 module TrafficSpy
 
   class Server < Sinatra::Base
@@ -19,7 +17,6 @@ module TrafficSpy
         body client.errors.full_messages.first
         status 400
       end
-      body "success" if redirect "/sources"
     end
 
     not_found do

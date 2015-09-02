@@ -19,7 +19,7 @@ class Minitest::Test
   end
 
   def payload
-    payload = {
+  {
   "url":"http://jumpstartlab.com/blog",
   "requestedAt":"2013-02-16 21:38:28 -0700",
   "respondedIn":37,

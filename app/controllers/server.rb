@@ -34,8 +34,13 @@ module TrafficSpy
     end
 
     post "/sources/:identifier/data" do
-      payload_data = JSON.parse(params["payload"])
-      Payload.create(url: payload_data["url"])
+      if params["payload"] == "{}" || params["payload"] == nil
+        body "Invalid payload data"
+        status 400
+      else
+        payload_data = JSON.parse(params["payload"])
+        Payload.create(url: payload_data["url"])
+      end
     end
 
     not_found do

@@ -13,7 +13,11 @@ module TrafficSpy
 
     get "/sources/:identifier" do
       @identifier = Source.where(identifier: :identifier)
-      erb :identifier
+      if @identifier
+        erb :identifier
+      else
+        not_found
+      end
     end
 
     post "/sources" do

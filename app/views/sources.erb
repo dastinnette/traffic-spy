@@ -1,9 +1,7 @@
 <div class="jumbotron">
   <h1>Sources</h1>
   <br>
-  <ol>
     <% @sources.each do |source| %>
-      <li class="btn btn-primary"> <%= source.identifier.capitalize %> </li><br><br>
+      <a href="/sources/<%=source.identifier%>" type="button" class="btn btn-primary"> <%= source.identifier.capitalize %> </a><br><br>
     <% end %>
-  </ol>
 </div>

@@ -7,6 +7,7 @@ module TrafficSpy
     end
 
     get "/sources" do
+      @client_source = Client.all
       erb :sources
     end
 

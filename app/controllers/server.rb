@@ -11,6 +11,11 @@ module TrafficSpy
       erb :sources
     end
 
+    get "/sources/:identifier" do
+      @identifier = Source.where(identifier: :identifier)
+      erb :identifier
+    end
+
     post "/sources" do
       @source = Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
       if Source.find_by(identifier: params[:identifier])

@@ -35,7 +35,6 @@ module TrafficSpy
 
     post "/sources/:identifier/data" do
       payload_data = JSON.parse(params["payload"])
-      require "pry"; binding.pry
       Payload.create(url: payload_data["url"])
     end
 

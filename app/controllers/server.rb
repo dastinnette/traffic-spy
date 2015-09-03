@@ -12,7 +12,7 @@ module TrafficSpy
     end
 
     post "/sources" do
-      @client = Client.new(params)
+      @client = Client.new(identifier: params[:identifier], root_url: params[:rootUrl])
       if Client.find_by(identifier: params[:identifier])
         status 403
         body @client.errors.full_messages.first

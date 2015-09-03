@@ -37,9 +37,12 @@ module TrafficSpy
       if params["payload"] == "{}" || params["payload"] == nil
         body "Invalid payload data"
         status 400
+      elsif Payload.find_by(hashed: Digest::SHA1.hexdigest(params["payload"]))
+        status 403
       else
+        payload_hash = Digest::SHA1.hexdigest(params["payload"])
         payload_data = JSON.parse(params["payload"])
-        Payload.create(url: payload_data["url"])
+        Payload.create(url: payload_data["url"], hashed: payload_hash)
       end
     end
 

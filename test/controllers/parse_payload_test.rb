@@ -30,12 +30,12 @@ class ParsePayloadTest<Minitest::Test
     assert_equal 400, last_response.status
   end
 
-  # def test_missing_payload_returns_bad_request
-  #   skip
-  #   post "/sources/jumpstartlab/data", "payload={}"
-  #
-  #   assert_equal 0, Payload.count
-  #   assert_equal 400, last_response.status
-  # end
+  def test_already_received_payload_returns_error
+    post "/sources/jumpstartlab/data", @data
+    post "/sources/jumpstartlab/data", @data
+
+    assert_equal 1, Payload.count
+    assert_equal 403, last_response.status
+  end
 
 end

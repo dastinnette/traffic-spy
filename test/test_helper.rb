@@ -18,8 +18,17 @@ class Minitest::Test
     DatabaseCleaner.start
   end
 
+  def app
+    TrafficSpy::Server
+  end
+
+  def client
+    {identifier: "jumpstart lab",
+     rootUrl: "test stuff"}
+  end
+
   def payload
-  {
+    'payload = {
   "url":"http://jumpstartlab.com/blog",
   "requestedAt":"2013-02-16 21:38:28 -0700",
   "respondedIn":37,
@@ -31,7 +40,7 @@ class Minitest::Test
   "resolutionWidth":"1920",
   "resolutionHeight":"1280",
   "ip":"63.29.38.211"
-  }
+  }'
   end
 
   def teardown

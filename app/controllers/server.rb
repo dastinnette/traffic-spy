@@ -33,11 +33,14 @@ module TrafficSpy
       end
     end
 
-    post "/sources/:identifier/data" do
+    post "/sources/:identifier/data" do |identifier|
+      # require 'pry'; binding.pry
       if params["payload"] == "{}" || params["payload"] == nil
         body "Invalid payload data"
         status 400
       elsif Payload.find_by(hashed: Digest::SHA1.hexdigest(params["payload"]))
+        status 403
+      elsif Source.find_by(identifier: identifier) == nil
         status 403
       else
         payload_hash = Digest::SHA1.hexdigest(params["payload"])

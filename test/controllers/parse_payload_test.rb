@@ -10,6 +10,7 @@ class ParsePayloadTest<Minitest::Test
   end
 
   def test_it_can_parse_payload
+    post "/sources", client
     post "/sources/jumpstartlab/data", @data
 
     assert_equal 1, Payload.count
@@ -17,6 +18,7 @@ class ParsePayloadTest<Minitest::Test
   end
 
   def test_empty_payload_returns_bad_request
+    post "/sources", client
     post "/sources/jumpstartlab/data", "payload={}"
 
     assert_equal 0, Payload.count
@@ -24,6 +26,7 @@ class ParsePayloadTest<Minitest::Test
   end
 
   def test_missing_payload_returns_bad_request
+    post "/sources", client
     post "/sources/jumpstartlab/data"
 
     assert_equal 0, Payload.count
@@ -31,10 +34,19 @@ class ParsePayloadTest<Minitest::Test
   end
 
   def test_already_received_payload_returns_error
+    post "/sources", client
     post "/sources/jumpstartlab/data", @data
     post "/sources/jumpstartlab/data", @data
 
     assert_equal 1, Payload.count
+    assert_equal 403, last_response.status
+  end
+
+  def test_application_not_registered_returns_error
+    post "/sources", client
+    post "/sources/pizza/data", @data
+
+    assert_equal 0, Payload.count
     assert_equal 403, last_response.status
   end
 

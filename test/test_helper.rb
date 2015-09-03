@@ -23,7 +23,7 @@ class Minitest::Test
   end
 
   def client
-    {identifier: "jumpstart lab",
+    {identifier: "jumpstartlab",
      rootUrl: "test stuff"}
   end
 

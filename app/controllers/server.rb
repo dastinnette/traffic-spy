@@ -13,10 +13,10 @@ module TrafficSpy
 
     get "/sources/:identifier" do
       @identifier = Source.where(identifier: :identifier)
-      if @identifier
-        erb :identifier
-      else
+      if @identifier == ActiveRecord::RecordNotFound
         not_found
+      else
+        erb :identifier
       end
     end
 

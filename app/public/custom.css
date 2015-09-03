@@ -21,12 +21,11 @@ body {
   text-align: center;
 }
 
-.li {
+.a {
   text-align: center;
 }
 
-.jumbotron li {
-    margin-left: -36px;
+.jumbotron a {
     align-items: center;
     border-radius: 25px;
     border-color: #90C3D4;

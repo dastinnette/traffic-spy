@@ -2,10 +2,8 @@
   <h1>Sources</h1>
   <br>
   <ol>
-    <% @client_source.each do |c| %>
-      <li class="btn btn-primary"> <%= c.identifier.capitalize %> </li><br><br>
+    <% @sources.each do |source| %>
+      <li class="btn btn-primary"> <%= source.identifier.capitalize %> </li><br><br>
     <% end %>
   </ol>
-
-  <!-- <h2> <%= @client_source.first %> </h2> -->
 </div>

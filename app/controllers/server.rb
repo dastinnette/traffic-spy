@@ -7,19 +7,19 @@ module TrafficSpy
     end
 
     get "/sources" do
-      @client_source = Client.all
+      @sources = Source.all
       erb :sources
     end
 
     post "/sources" do
-      @client = Client.new(identifier: params[:identifier], root_url: params[:rootUrl])
-      if Client.find_by(identifier: params[:identifier])
+      @source = Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
+      if Source.find_by(identifier: params[:identifier])
         status 403
-        body @client.errors.full_messages.first
-      elsif @client.save
+        body @source.errors.full_messages.first
+      elsif @source.save
         body json_converter
       else
-        body @client.errors.full_messages.first
+        body @source.errors.full_messages.first
         status 400
       end
     end
@@ -29,11 +29,11 @@ module TrafficSpy
     end
 
     def json_converter
-      client_identifier_hash.to_json
+      source_identifier_hash.to_json
     end
 
-    def client_identifier_hash
-      @client.attributes.select do |k|
+    def source_identifier_hash
+      @source.attributes.select do |k|
         k == "identifier"
       end
     end

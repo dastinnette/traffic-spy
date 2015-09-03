@@ -18,7 +18,7 @@ class CreatingAClientTest<Minitest::Test
 
   def test_it_creates_a_client_with_valid_attributes
     attributes = {identifier: "jumpstart lab",
-                  root_url: "test stuff"}
+                  rootUrl: "test stuff"}
     post "/sources", attributes
 
     assert_equal 1, Client.count
@@ -28,9 +28,9 @@ class CreatingAClientTest<Minitest::Test
 
   def test_it_does_not_create_a_client_when_identifier_already_taken
     attributes = {identifier: "jumpstart lab",
-                  root_url: "test stuff"}
+                  rootUrl: "test stuff"}
     attributes2 = {identifier: "jumpstart lab",
-                  root_url: "test stuff"}
+                  rootUrl: "test stuff"}
     post "/sources", attributes
     post "/sources", attributes2
 

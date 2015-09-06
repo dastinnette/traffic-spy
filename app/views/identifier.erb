@@ -2,8 +2,18 @@
    <h1><%= @identifier.identifier %></h1>
    <br>
    <p>
-     <% @identifier.payloads.max_by do |payload| %>
-      <p><%= payload.url %></p><br>
+     <% url_list = [] %>
+     <% @identifier.payloads.map do |payload| %>
+      <% url_list << payload.url %>
+      <% url_list %> </p>
       <% end %>
+      <% count_of_urls = url_list.inject(Hash.new(0)) {|total, e| total[e] += 1 ;total}.sort.reverse %>
+      <% count_of_urls.each do |url, count| %>
+      <p>
+      <%= url %>
+      <%=": Was requested #{count} time(s)" %>
+    </p>
+    <br>
+    <% end %>
    </p>
 </div>

@@ -21,7 +21,8 @@ module TrafficSpy
     end
 
     post "/sources" do
-      @source = Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
+      @source = Source.new(identifier: params[:identifier],
+                           root_url: params[:rootUrl])
       if Source.find_by(identifier: params[:identifier])
         status 403
         body @source.errors.full_messages.first
@@ -45,8 +46,15 @@ module TrafficSpy
       else
         payload_hash = Digest::SHA1.hexdigest(params["payload"])
         payload_data = JSON.parse(params["payload"])
-        Payload.create(url: payload_data["url"], hashed: payload_hash)
+        payload = Payload.create(url: payload_data["url"], hashed: payload_hash)
+        user_source = Source.find_by(identifier: identifier)
+        user_source.payloads << payload
+        body "Awesome"
       end
+    end
+
+    get "/sources/:identifier/urls/:relative/:path" do
+      erb :url_stats
     end
 
     not_found do

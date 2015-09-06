@@ -2,6 +2,7 @@
   <h1>Sources</h1>
   <br>
     <% @sources.each do |source| %>
-      <a href="/sources/<%=source.identifier%>" type="button" class="btn btn-primary"> <%= source.identifier.capitalize %> </a><br><br>
+      <a href="/sources/<%=source.identifier%>" type="button" class="btn btn-primary"> <%= source.identifier.capitalize %> </a>
+      <br><br>
     <% end %>
 </div>

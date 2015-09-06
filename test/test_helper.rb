@@ -46,4 +46,9 @@ class Minitest::Test
   def teardown
     DatabaseCleaner.clean
   end
+
+end
+
+class FeatureTest < Minitest::Test
+  include Capybara::DSL
 end

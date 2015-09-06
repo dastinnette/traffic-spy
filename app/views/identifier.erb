@@ -1,3 +1,19 @@
 <div class="jumbotron">
    <h1><%= @identifier.identifier %></h1>
+   <br>
+   <p>
+     <% url_list = [] %>
+     <% @identifier.payloads.map do |payload| %>
+       <% url_list << payload.url %>
+       <% url_list %> </p>
+     <% end %>
+      <% count_of_urls = url_list.inject(Hash.new(0)) {|total, e| total[e] += 1 ;total}.sort_by {|key, value| -value} %>
+      <% count_of_urls.each do |url, count| %>
+       <p>
+        <%= url %>
+        <%=": Was requested #{count} time(s)" %>
+       </p>
+       <br>
+      <% end %>
+    </p>
 </div>

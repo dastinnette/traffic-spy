@@ -16,9 +16,8 @@ class UserCanNavigateTest < FeatureTest
     assert page.has_content?("Sources")
   end
 
-  # def test_it_can_find_the_navbar
-  #   visit("/")
-  #   save_and_open_page
-  #   assert page.has_css?("navbar")
-  # end
+  def test_it_can_find_the_navbar
+    visit("/")
+    assert page.has_css?("html", "#capy")
+  end
 end

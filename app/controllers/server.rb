@@ -46,11 +46,16 @@ module TrafficSpy
       else
         payload_hash = Digest::SHA1.hexdigest(params["payload"])
         payload_data = JSON.parse(params["payload"])
-        payload = Payload.create(url: payload_data["url"], hashed: payload_hash)
+        payload = Payload.create(url: payload_data["url"], hashed: payload_hash, user_agent_string: payload_data["userAgent"])
         user_source = Source.find_by(identifier: identifier)
         user_source.payloads << payload
+
         body "Awesome"
       end
+    end
+
+    def browser_output(table)
+      UserAgent.parse(table).browser
     end
 
     get "/sources/:identifier/urls/:relative/:path" do

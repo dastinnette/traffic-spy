@@ -21,4 +21,9 @@
         <%= browser_output(payload.user_agent_string) %>
       <% end %>
     </p>
+    <p>
+      <% @identifier.payloads.map do |payload| %>
+        <%= platform_output(payload.user_agent_string) %>
+      <% end %>
+    </p>
 </div>

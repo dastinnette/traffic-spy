@@ -58,6 +58,10 @@ module TrafficSpy
       UserAgent.parse(table).browser
     end
 
+    def platform_output(table)
+      UserAgent.parse(table).platform
+    end
+
     get "/sources/:identifier/urls/:relative/:path" do
       erb :url_stats
     end

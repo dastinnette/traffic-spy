@@ -10,4 +10,15 @@ class UserCanNavigateTest < FeatureTest
     visit("/")
     assert page.has_css?("html", "jumbotron")
   end
+
+  def test_the_source_page_exists
+    visit("/sources")
+    assert page.has_content?("Sources")
+  end
+
+  # def test_it_can_find_the_navbar
+  #   visit("/")
+  #   save_and_open_page
+  #   assert page.has_css?("navbar")
+  # end
 end

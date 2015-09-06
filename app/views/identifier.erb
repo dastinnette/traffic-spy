@@ -1,7 +1,7 @@
 <div class="jumbotron">
    <h1><%= @identifier.identifier %></h1>
    <p>
-     <% @identifier.payloads.each do |payload| %>
+     <% @identifier.payloads.max_by do |payload| %>
       <%= payload.url %>
       <% end %>
    </p>

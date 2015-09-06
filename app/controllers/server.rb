@@ -21,7 +21,8 @@ module TrafficSpy
     end
 
     post "/sources" do
-      @source = Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
+      @source = Source.new(identifier: params[:identifier],
+                           root_url: params[:rootUrl])
       if Source.find_by(identifier: params[:identifier])
         status 403
         body @source.errors.full_messages.first

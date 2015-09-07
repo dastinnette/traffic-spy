@@ -3,11 +3,8 @@
    <br>
    <p>
      <% url_list = [] %>
-     <% response_list = []%>
      <% @identifier.payloads.map do |payload| %>
        <% url_list << payload.url %>
-       <% response_list << payload.responded_in %>
-       <% response_list %>
        <% url_list %> </p>
        <% %>
      <% end %>
@@ -19,23 +16,15 @@
        </p>
        <br>
       <% end %>
-    
+
     </p>
     <p>
-      <% @identifier.payloads.map do |payload| %>
-        <%= browser_output(payload.user_agent_string) %>
-      <% end %>
+      <%= web_browser_report %>
     </p>
     <p>
-      <% @identifier.payloads.map do |payload| %>
-        <%= platform_output(payload.user_agent_string) %>
-      <% end %>
-      <%= @something %>
+      <%= operating_system_report %>
     </p>
     <p>
-      <% @resolution_source.to_a.map do |resolution| %>
-        <%= resolution.height %>
-        <%= resolution.width %>
-      <% end %>
+      <%= resolution_dimensions %>
     </p>
 </div>

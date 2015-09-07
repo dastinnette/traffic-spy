@@ -46,7 +46,7 @@ module TrafficSpy
         payload_hash = Digest::SHA1.hexdigest(params["payload"])
         payload_data = JSON.parse(params["payload"])
         resolution = Resolution.find_or_create_by(width: payload_data["resolutionWidth"],
-                          height: payload_data["resolutionHeight"])
+                                                  height: payload_data["resolutionHeight"])
         payload = Payload.create(url: payload_data["url"],
                                  hashed: payload_hash,
                                  user_agent_string: payload_data["userAgent"],
@@ -54,7 +54,6 @@ module TrafficSpy
         user_source = Source.find_by(identifier: identifier)
         user_source.payloads << payload
         resolution.payloads << payload
-        @resolution_source = user_source.resolutions
         body "Awesome"
       end
     end
@@ -90,6 +89,25 @@ module TrafficSpy
         k == "identifier"
       end
     end
+
+    def resolution_dimensions
+      Resolution.all.map do |resolution|
+        "#{resolution.height}, #{resolution.width}"
+      end.uniq.join
+    end
+
+    def operating_system_report
+      @identifier.payloads.map do |payload|
+        platform_output(payload.user_agent_string)
+      end.uniq.join
+    end
+
+    def web_browser_report
+      @identifier.payloads.map do |payload|
+        browser_output(payload.user_agent_string)
+      end.uniq.join
+    end
+
   end
 
 end

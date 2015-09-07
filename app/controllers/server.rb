@@ -46,7 +46,7 @@ module TrafficSpy
       else
         payload_hash = Digest::SHA1.hexdigest(params["payload"])
         payload_data = JSON.parse(params["payload"])
-        resolution = Resolution.create(width: payload_data["resolutionWidth"],
+        resolution = Resolution.find_or_create_by(width: payload_data["resolutionWidth"],
                           height: payload_data["resolutionHeight"])
         payload = Payload.create(url: payload_data["url"],
                                  hashed: payload_hash,
@@ -61,7 +61,7 @@ module TrafficSpy
     end
 
     def responded_in_max
-      @testy = @identifier.payloads.map do |payload|
+      @response_times = @identifier.payloads.map do |payload|
         payload.responded_in
       end
     end

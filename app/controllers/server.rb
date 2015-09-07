@@ -50,13 +50,19 @@ module TrafficSpy
                           height: payload_data["resolutionHeight"])
         payload = Payload.create(url: payload_data["url"],
                                  hashed: payload_hash,
-                                 user_agent_string: payload_data["userAgent"])
+                                 user_agent_string: payload_data["userAgent"],
+                                 responded_in: payload_data["respondedIn"])
         user_source = Source.find_by(identifier: identifier)
         user_source.payloads << payload
-        @resolution_source = user_source.resolutions
-        require 'pry'; binding.pry
         resolution.payloads << payload
+        @resolution_source = user_source.resolutions
         body "Awesome"
+      end
+    end
+
+    def responded_in_max
+      @testy = @identifier.payloads.map do |payload|
+        payload.responded_in
       end
     end
 

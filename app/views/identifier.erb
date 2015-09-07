@@ -25,6 +25,7 @@
       <% @identifier.payloads.map do |payload| %>
         <%= platform_output(payload.user_agent_string) %>
       <% end %>
+      <%= responded_in_max %>
     </p>
     <p>
       <% @resolution_source.to_a.map do |resolution| %>

@@ -35,7 +35,6 @@ module TrafficSpy
     end
 
     post "/sources/:identifier/data" do |identifier|
-      # require 'pry'; binding.pry
       if params["payload"] == "{}" || params["payload"] == nil
         body "Invalid payload data"
         status 400

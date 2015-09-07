@@ -51,4 +51,9 @@ end
 
 class FeatureTest < Minitest::Test
   include Capybara::DSL
+
+  def register_source
+    @source = Source.create(identifier: "jumpstartlab", root_url: "http://jumpstartlab.com")
+  end
+
 end

@@ -20,4 +20,18 @@ class UserCanNavigateTest < FeatureTest
     visit("/")
     assert page.has_css?("html", "#capy")
   end
+
+  def test_it_can_go_home_from_sources
+    visit("/sources")
+    click_link("Home")
+
+    assert page.has_content?("Hello, Traffic Spyer")
+  end
+
+  def test_it_can_go_to_traffic_spy_home_from_sources
+    visit("/sources")
+    click_link("Traffic Spy")
+
+    assert page.has_content?("Hello, Traffic Spyer")
+  end
 end

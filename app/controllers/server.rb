@@ -46,10 +46,16 @@ module TrafficSpy
       else
         payload_hash = Digest::SHA1.hexdigest(params["payload"])
         payload_data = JSON.parse(params["payload"])
-        payload = Payload.create(url: payload_data["url"], hashed: payload_hash, user_agent_string: payload_data["userAgent"])
+        resolution = Resolution.create(width: payload_data["resolutionWidth"],
+                          height: payload_data["resolutionHeight"])
+        payload = Payload.create(url: payload_data["url"],
+                                 hashed: payload_hash,
+                                 user_agent_string: payload_data["userAgent"])
         user_source = Source.find_by(identifier: identifier)
         user_source.payloads << payload
-
+        @resolution_source = user_source.resolutions
+        require 'pry'; binding.pry
+        resolution.payloads << payload
         body "Awesome"
       end
     end

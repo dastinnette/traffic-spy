@@ -108,6 +108,15 @@ module TrafficSpy
       end.uniq.join
     end
 
+    def sort_url_requests
+      url_list = []
+      @identifier.payloads.map do |payload|
+        url_list << payload.url
+        url_list
+      end
+      count_of_urls = url_list.inject(Hash.new(0)) {|total, e| total[e] += 1 ;total}.sort_by {|key, value| -value}
+    end
+
   end
 
 end

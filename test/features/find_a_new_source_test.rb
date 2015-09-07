@@ -70,8 +70,8 @@ class FindNewSourceTest < FeatureTest
     visit "/sources"
     click_link("Jumpstartlab")
 
-    assert page.has_content?("Chrome Chrome Chrome")
-    assert page.has_content?("Macintosh Macintosh Macintosh")
+    assert page.has_content?("Chrome")
+    assert page.has_content?("Macintosh")
     assert page.has_content?("jumpstartlab")
     assert page.has_content?("http://jumpstartlab.com/blog : Was requested 2 time(s)")
     assert page.has_content?("http://jumpstartlab.com/article/1 : Was requested 1 time(s)")

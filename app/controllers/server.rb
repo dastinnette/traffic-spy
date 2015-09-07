@@ -92,7 +92,7 @@ module TrafficSpy
 
     def resolution_dimensions
       Resolution.all.map do |resolution|
-        "#{resolution.height}, #{resolution.width}"
+        "#{resolution.height} x #{resolution.width}"
       end.uniq.join
     end
 

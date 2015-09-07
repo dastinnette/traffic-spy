@@ -42,11 +42,38 @@ class FindNewSourceTest < FeatureTest
     assert page.has_link?("Jumpstartlab")
   end
 
-  def test_it_can_take_and_see_payload
+  def test_it_redirects_to_new_page_with_no_payload
+    post "/sources", client
+    visit "/sources"
+    click_link("Jumpstartlab")
+
+    assert page.has_content?("jumpstartlab")
+  end
+
+  def test_it_redirects_to_new_page_with_payload_data
     post "/sources", client
     post "/sources/jumpstartlab/data", @data1
     visit "/sources"
+    click_link("Jumpstartlab")
 
-    assert_equal 1, Payload.count
+    assert page.has_content?("Chrome")
+    assert page.has_content?("Macintosh")
+    assert page.has_content?("jumpstartlab")
+    assert page.has_content?("http://jumpstartlab.com/blog : Was requested 1 time(s)")
+  end
+
+  def test_it_redirects_to_new_page_with_multiple_payloads
+    post "/sources", client
+    post "/sources/jumpstartlab/data", @data1
+    post "/sources/jumpstartlab/data", @data2
+    post "/sources/jumpstartlab/data", @data3
+    visit "/sources"
+    click_link("Jumpstartlab")
+
+    assert page.has_content?("Chrome Chrome Chrome")
+    assert page.has_content?("Macintosh Macintosh Macintosh")
+    assert page.has_content?("jumpstartlab")
+    assert page.has_content?("http://jumpstartlab.com/blog : Was requested 2 time(s)")
+    assert page.has_content?("http://jumpstartlab.com/article/1 : Was requested 1 time(s)")
   end
 end

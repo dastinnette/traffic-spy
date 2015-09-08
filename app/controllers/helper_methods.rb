@@ -38,9 +38,8 @@ module HelperMethods
   end
 
   def responded_in_max
-    @response_times = @identifier.payloads.map do |payload|
-      payload.responded_in
-    end
+    objects = Source.find_by(identifier: params[:identifier]).payloads.where(params[:url])
+    # objects.average(:responded_in)
   end
 
   def browser_output(table)

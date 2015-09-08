@@ -37,6 +37,9 @@ module TrafficSpy
       end
     end
 
+    # get "/sources/:identifier/urls/*" do |identifier|
+    #   url = params[:splat]
+
     post "/sources/:identifier/data" do |identifier|
       if params["payload"] == "{}" || params["payload"] == nil
         body "Invalid payload data"

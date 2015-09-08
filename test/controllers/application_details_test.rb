@@ -20,7 +20,4 @@ class ApplicationDetailsTest<Minitest::Test
     assert_equal 3, Payload.count
     assert_equal 200, last_response.status
   end
-
-  
-
 end

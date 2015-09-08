@@ -75,5 +75,6 @@ class FindNewSourceTest < FeatureTest
     assert page.has_content?("jumpstartlab")
     assert page.has_content?("http://jumpstartlab.com/blog : Was requested 2 time(s)")
     assert page.has_content?("http://jumpstartlab.com/article/1 : Was requested 1 time(s)")
+    assert page.has_content?("")
   end
 end

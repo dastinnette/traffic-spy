@@ -37,4 +37,18 @@ module HelperMethods
     count_of_urls = url_list.inject(Hash.new(0)) {|total, e| total[e] += 1 ;total}.sort_by {|key, value| -value}
   end
 
+  def responded_in_max
+    @response_times = @identifier.payloads.map do |payload|
+      payload.responded_in
+    end
+  end
+
+  def browser_output(table)
+    UserAgent.parse(table).browser
+  end
+
+  def platform_output(table)
+    UserAgent.parse(table).platform
+  end
+
 end

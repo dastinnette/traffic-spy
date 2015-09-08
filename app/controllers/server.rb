@@ -61,20 +61,6 @@ module TrafficSpy
       end
     end
 
-    def responded_in_max
-      @response_times = @identifier.payloads.map do |payload|
-        payload.responded_in
-      end
-    end
-
-    def browser_output(table)
-      UserAgent.parse(table).browser
-    end
-
-    def platform_output(table)
-      UserAgent.parse(table).platform
-    end
-
     get "/sources/:identifier/urls/:relative/:path" do
       erb :url_stats
     end

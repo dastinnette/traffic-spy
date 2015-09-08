@@ -37,11 +37,6 @@ module HelperMethods
     count_of_urls = url_list.inject(Hash.new(0)) {|total, e| total[e] += 1 ;total}.sort_by {|key, value| -value}
   end
 
-  # def responded_in_max
-  #   objects = Source.find_by(identifier: params[:identifier]).payloads.where(params[:url])
-  #   objects.average(:responded_in)
-  # end
-
   def browser_output(table)
     UserAgent.parse(table).browser
   end

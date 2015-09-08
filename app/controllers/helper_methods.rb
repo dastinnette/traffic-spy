@@ -12,8 +12,8 @@ module HelperMethods
 
   def resolution_dimensions
     Resolution.all.map do |resolution|
-      "#{resolution.height} x #{resolution.width}"
-    end.uniq.join
+      "#{resolution.height} x #{resolution.width}<br>"
+    end.uniq.join(" ")
   end
 
   def operating_system_report
